@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Ваши любимые
+{% endblock %}
+
+{% block content %}
+  <!-- класс py-5 создает отступы сверху и снизу блока -->
+  <div class="container py-5">     
+    {% include 'posts/includes/switcher.html' %}
+    <h1>любимые авторы</h1>
+    <article>
+      {% for post in page_obj %}
+        {% include 'posts/includes/posts.html' %}
+      {% endfor %}
+    </article>
+    <!-- под последним постом нет линии -->
+  </div>
+  {% include 'posts/includes/paginator.html' %}
+{% endblock %} 
+  

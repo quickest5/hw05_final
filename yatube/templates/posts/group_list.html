@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+  Здесь информация о группах проекта Yatube
+{% endblock %}
+
+{% block content %}
+  <!-- класс py-5 создает отступы сверху и снизу блока -->
+  <div class="container py-5">
+    <h1>{{ group }}</h1>
+    <p>
+      {{ group.description }}
+    </p>
+    <article>
+      {% for post in page_obj %}
+        {% include 'posts/includes/posts.html' %}
+      {% endfor %}
+    </article>
+  </div>
+  {% include 'posts/includes/paginator.html' %}
+{% endblock %}
+
+

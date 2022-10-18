@@ -91,8 +91,13 @@ class PostFormTests(TestCase):
                 group=self.group.id,
             ).exists()
         )
-        self.post.refresh_from_db()
-        self.assertEqual(str(self.post.image), 'posts/small.gif')
+        post = Post.objects.filter(
+            text='Тест текст',
+            author=self.user.id,
+            group=self.group.id,
+        ).last()
+
+        self.assertEqual(str(post.image), 'posts/small.gif')
         self.assertEqual(response.status_code, 302)
 
     def test_edit_post(self):

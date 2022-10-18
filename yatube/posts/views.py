@@ -57,7 +57,9 @@ def post_detail(request, post_id):
 
 @login_required
 def post_create(request):
-    form = PostForm(request.POST or None)
+    form = PostForm(
+        request.POST or None,
+        files=request.FILES or None)
 
     if request.method == 'POST':
         if form.is_valid():

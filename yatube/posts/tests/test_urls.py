@@ -115,3 +115,12 @@ class StaticURLTests(TestCase):
                     HTTPStatus.FOUND,
                     ('не автора по ссылке не редиректнуло')
                 )
+
+    def test_follow_index(self):
+        """Страница /follow_index/ не доступна ноунейму."""
+        response = self.guest_client.get('/follow/')
+        self.assertEqual(response.status_code, 302)
+
+    def test_comments_guest_user(self):
+        response = self.guest_client.get(f'/posts/{self.post.pk}/comment/')
+        self.assertEqual(response.status_code, 302)
